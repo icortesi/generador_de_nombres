@@ -1,0 +1,102 @@
+<html>
+	<head>
+		<title>Generador de Nombres</title>
+		
+		<style type="text/css">
+		 body {
+			font-family: Helvetica,Arial;
+		 }
+		 
+		 #outApellidos {
+			text-transform: capitalize;
+		 }
+		 #nombreGenerado {
+			text-align: center;
+		 }
+		 
+		 #header {
+			background-color: #ccc;
+			padding: 5px;	
+			spacing: 0px;
+		 }
+		</style>
+	<script>
+		function generaNombres () {
+			var nombres = [];
+			var nombresMujer = ['Sofía','Isabella','Valentina','Camila','Valeria','Luciana','Ximena/Jimena','Mariana','María-José','Victoria','Martina','Sara','Daniela','Samantha','Natalia','Emma','Renata','Lucía','Andrea','Regina','Mía','Catalina','Antonella','Emilia','Zoe','Julieta','Alejandra','Salomé','Paula','María-Fernanda','Nicole','María','Fernanda','Emily','Ana-Sofía','Amanda','Abril','Allison','Elena','Danna','Ariana','Violeta','Antonia','Ana','Agustina','Olivia','Jazmín','Romina','Rafaella','Julia','Abigail','Fabiana','Laura','Constanza','Alma','Guadalupe','Valery','Miranda','Juliana','Alexa','Elisa','Luna','Carla','Ivanna','Monserrat','Michelle','María-Paula','Ashley','Isabel','Micaela','Elizabeth','Rebeca','Melanie','Manuela','Noa','Bianca','Clara','Ana-Paula','Paulina','Carolina','Florencia','Josefina','Paola','Fiorella','María-Camila','Melissa','Maite','Juana','Vanessa','Alicia','Amy','Alessandra','Amelia','Kiara','Adriana','Isidora','Ana-Paula','Mariangel','Magdalena'];
+			var nombresHombre = ['Santiago','Matías','Sebastián','Mateo','Nicolás','Alejandro','Samuel','Diego','Daniel','Benjamín','Leonardo','Tomás','Joaquín','Gabriel','Emiliano','Martín','Lucas','Agustín','David','Iker','Juan-José','Maximiliano','Adrián','Emmanuel','Felipe','Juan-Pablo','Andrés','Jerónimo/Gerónimo','Ángel','Rodrigo','Bruno','Alexander','Thiago','Pablo','Ian','Isaac','Miguel-Ángel','Fernando','Javier','Emilio','Juan-Sebastián','Alonso','Aarón','Rafael','Esteban','Juan-Diego','Axel','Francisco','Bautista','Carlos','Dylan','Juan','Julián','Manuel','Facundo','Gael','Valentino','Damián','Santino','Vicente','Máximo','Christopher','Jorge','Luciano','Dante','Alan','Cristóbal','Jesús','Lorenzo','Alex','Juan-Esteban','Patricio','Pedro','Juan-Manuel','Matthew','Antonio','Iván','José','Hugo','Josué','Lautaro','Diego-Alejandro','Miguel','Franco','Kevin','Luis','Simón','Elías','Caleb','Eduardo','Ricardo','Juan-David','Marcos','Salvador','Jacobo','Juan-Ignacio','Camilo','Mauricio','Juan-Felipe','Gonzalo'];
+			var ran1 = 0;
+			var ran2 = 0;
+			var ran = [];
+			var nombresGenerados = "";
+									
+			var checkMujer = document.getElementById('generoMujer').checked;
+			var checkHombre = document.getElementById('generoHombre').checked;
+			
+			var nNombres = document.getElementById('numeroNombres').value;
+			
+			if ( (checkMujer == true) && ( checkHombre == true) ) {
+				
+				var volado = Math.round(Math.random());
+								
+				switch (volado) {
+					case 1: generoSeleccionado = nombresMujer; break;
+					case 0: generoSeleccionado = nombresHombre; break;
+				}
+				
+				nombres = nombres.concat(generoSeleccionado);
+				
+			}
+			
+			if ( (checkMujer == false) && ( checkHombre == true) ) {
+				nombres = nombres.concat(nombresHombre);
+			}
+			
+			if ( (checkMujer == true) && ( checkHombre == false) ) {
+				nombres = nombres.concat(nombresMujer);
+			}
+			
+			if ( (checkMujer == false) && ( checkHombre == false) ) {
+				alert('Selecciona al menos un genero para tu bebé');
+				return false;
+			}
+			
+			n = nombres.length;
+			
+			
+			for (i=0;i<nNombres;i++) {
+				
+				ran[i] = Math.floor(Math.random()*n);
+				nombresGenerados = nombresGenerados+" "+nombres[ran[i]];
+				
+			}
+			
+			document.getElementById('outNombres').innerHTML = nombresGenerados;
+			document.getElementById('outApellidos').innerHTML = document.getElementById('inApellidos').value;
+		} // generaNombres
+	</script>
+		
+		
+	</head>
+	<body>
+		<div id="header">
+			<label>Apellidos:</label> <input type="text" id="inApellidos">
+			Genero: 
+			<input type="checkbox" name="generoHombre" id="generoHombre" checked="checked"><label>Niño</label>
+			<input type="checkbox" name="generoMujer" id="generoMujer" checked="checked"><label>Niña</label>
+			¿Cuantos nombres?:
+			<select id="numeroNombres">
+				<option value="1" selected="selected">Uno</option>
+				<option value="2">Dos</option>
+				<option value="3">De telenovela</option>
+			</select>
+			<button onclick="generaNombres();">¡GENERA UN NOMBRE!</button>
+		</div>
+		<h1 id="NombreGenerado">
+			<span id="outNombres"></span>&nbsp;<span id="outApellidos"></span>
+		</h1>
+		
+	</body>
+	
+
+</html>
