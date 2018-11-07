@@ -1,0 +1,26 @@
+{
+  "nombresMujer": [
+    "Sofía", "Isabella", "Valentina", "Camila", "Valeria", "Luciana", "Ximena/Jimena", "Mariana", "María-José", "Victoria",
+    "Martina", "Sara", "Daniela", "Samantha", "Natalia", "Emma", "Renata", "Lucía", "Andrea", "Regina", "Mía", "Catalina", 
+    "Antonella", "Emilia", "Zoe", "Julieta", "Alejandra", "Salomé", "Paula", "María-Fernanda", "Nicole", "María", "Fernanda", 
+    "Emily", "Ana-Sofía", "Amanda", "Abril", "Allison", "Elena", "Danna", "Ariana", "Violeta", "Antonia", "Ana", "Agustina", 
+    "Olivia", "Jazmín", "Romina", "Rafaella", "Julia", "Abigail", "Fabiana", "Laura", "Constanza", "Alma", "Guadalupe", 
+    "Valery", "Miranda", "Juliana", "Alexa", "Elisa", "Luna", "Carla", "Ivanna", "Monserrat", "Michelle", "María-Paula", 
+    "Ashley", "Isabel", "Micaela", "Elizabeth", "Rebeca", "Melanie", "Manuela", "Noa", "Bianca", "Clara", "Ana-Paula", 
+    "Paulina", "Carolina", "Florencia", "Josefina", "Paola", "Fiorella", "María-Camila", "Melissa", "Maite", "Juana", 
+    "Vanessa", "Alicia", "Amy", "Alessandra", "Amelia", "Kiara", "Adriana", "Isidora", "Ana-Paula", "Mariangel", 
+    "Magdalena"
+  ],
+  "nombresHombre": [
+    "Santiago", "Matías", "Sebastián", "Mateo", "Nicolás", "Alejandro", "Samuel", "Diego", "Daniel", "Benjamín", 
+    "Leonardo", "Tomás", "Joaquín", "Gabriel", "Emiliano", "Martín", "Lucas", "Agustín", "David", "Iker", "Juan-José", 
+    "Maximiliano", "Adrián", "Emmanuel", "Felipe", "Juan-Pablo", "Andrés", "Jerónimo/Gerónimo", "Ángel", "Rodrigo", 
+    "Bruno", "Alexander", "Thiago", "Pablo", "Ian", "Isaac", "Miguel-Ángel", "Fernando", "Javier", "Emilio", 
+    "Juan-Sebastián", "Alonso", "Aarón", "Rafael", "Esteban", "Juan-Diego", "Axel", "Francisco", "Bautista", "Carlos", 
+    "Dylan", "Juan", "Julián", "Manuel", "Facundo", "Gael", "Valentino", "Damián", "Santino", "Vicente", "Máximo", 
+    "Christopher", "Jorge", "Luciano", "Dante", "Alan", "Cristóbal", "Jesús", "Lorenzo", "Alex", "Juan-Esteban", 
+    "Patricio", "Pedro", "Juan-Manuel", "Matthew", "Antonio", "Iván", "José", "Hugo", "Josué", "Lautaro", 
+    "Diego-Alejandro", "Miguel", "Franco", "Kevin", "Luis", "Simón", "Elías", "Caleb", "Eduardo", "Ricardo", 
+    "Juan-David", "Marcos", "Salvador", "Jacobo", "Juan-Ignacio", "Camilo", "Mauricio", "Juan-Felipe", "Gonzalo"
+  ]
+}
