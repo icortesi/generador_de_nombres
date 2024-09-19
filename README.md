@@ -16,7 +16,7 @@ Cuando mi hija estaba por nacer, decidimos que ella debería tener su propio nom
 Esta aplicación genera combinaciones de nombres y los muestra junto con los posibles apellidos, para que las parejas que esperan un bebé puedan ver muchas combinaciones antes de decidir.
 
 ## 🚀 Cómo usarla
-
+1. Entra a https://icortesi.github.io/generador_de_nombres/
 1. Selecciona el género del bebé (si lo sabes) o selecciona ambos para generar nombres de cualquier género.
 2. Escribe los apellidos que tendrá el bebé.
 3. Selecciona el número de nombres que quieres que tenga (1-3).
