@@ -27,7 +27,7 @@ Esta aplicación genera combinaciones de nombres y los muestra junto con los pos
 
 Se aceptan todo tipo de contribuciones que mejoren el algoritmo y la presentación. ¡Las mejoras siempre son bienvenidas! 🎉
 
-### TODO
+### 📝 TODO
 - Actualizar la lista de nombres
 - Separar responsabilidades (vista y lógica)
 - Actualizar a un framework más reciente
