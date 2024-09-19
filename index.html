@@ -1,169 +1,172 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-	<title>Generador de Nombres</title>
-
-	<style type="text/css">
-	body {
-		font-family: Helvetica,Arial;
-	}
-
-	#outApellidos {
-		text-transform: capitalize;
-	}
-	#nombreGenerado {
-		text-align: center;
-		margin-top: 50px;
-	}
-
-	#header, .jumbotron {
-		margin-top: 30px;
-			/*background-color: #ccc;
-			padding: 5px;	
-			spacing: 0px;*/
-		}
-
-		label {
-			font-size: 1.5em;
-		}
-	</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de nombre</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-	<div class="container">
+<!-- Contenedor principal -->
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Generador de nombre</h1>
 
-		<div class="jumbotron">
-			<h1>Generador de Nombres</h1>
-			<p>Selecciona tus preferenicias y pica el botón hasta que encuentres un nombre que te guste.</p>
-			<hr class="my-4">
-			<p>TODO: Guardar y compartir</p>
-		</div>
+    <!-- Formulario -->
+    <form id="form-nombres">
+        <!-- Sección Género -->
+        <div class="mb-3">
+            <label for="genero" class="form-label">Género</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="genero" id="generoNino" value="Niño">
+                <label class="form-check-label" for="generoNino">
+                    Niño
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="genero" id="generoNina" value="Niña">
+                <label class="form-check-label" for="generoNina">
+                    Niña
+                </label>
+            </div>
+        </div>
 
-		<div class="row" id="header">
-			<div class="col">
+        <!-- Input de Apellidos -->
+        <div class="mb-3">
+            <label for="apellidos" class="form-label">Apellido(s)</label>
+            <input type="text" class="form-control" id="apellidos" placeholder="Ingresa los apellidos">
+        </div>
 
-				<div class="form-check form-check-inline mb-3">
+        <!-- Drop-down para elegir número de nombres -->
+        <div class="mb-3">
+            <label for="numeroNombres" class="form-label">Número de nombres para combinar</label>
+            <select class="form-select" id="numeroNombres">
+                <option selected>Selecciona el número de nombres</option>
+                <option value="1">Uno</option>
+                <option value="2">Dos</option>
+                <option value="3">Telenovelesco</option>
+            </select>
+        </div>
 
-					<h4>Género:</h4>
+        <!-- Botón para generar nombre -->
+        <button type="button" id="generarNombre" class="btn btn-primary w-100">Generar nombre</button>
 
+    </form>
 
-					<input class="form-check-input ml-3 mb-2" type="checkbox" name="generoHombre" id="generoHombre" checked="checked">
-					<label class="form-check-label mb-1" for="generoHombre">Niño</label>
+    <!-- Resultado -->
+    <div class="mt-4">
+        <h3>Resultado:</h3>
+        <ul id="resultadoNombre"></ul>
+        <button type="button" id="copiarPortapapeles" class="btn btn-secondary w-100 mt-3">Copiar al portapapeles</button>
+    </div>
+</div>
 
-					<input class="form-check-input ml-3 mb-2" type="checkbox" name="generoMujer" id="generoMujer" checked="checked">
-					<label class="form-check-label mb-1" for="generoMujer">Niña</label>
+<!-- Bootstrap JS y dependencias -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-				</div>
+<script>
+    // Función para elegir nombres aleatorios sin repetir
+    function obtenerNombresAleatorios(array, cantidad) {
+        let nombresSeleccionados = [];
+        let arrayTemporal = [...array]; // Clonamos el array para no modificar el original
 
-				<div class="input-group input-group-lg mb-3">
+        for (let i = 0; i < cantidad; i++) {
+            let indiceAleatorio = Math.floor(Math.random() * arrayTemporal.length);
+            nombresSeleccionados.push(arrayTemporal[indiceAleatorio]);
+            arrayTemporal.splice(indiceAleatorio, 1); // Eliminamos el nombre seleccionado para no repetirlo
+        }
+        return nombresSeleccionados;
+    }
 
-					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon3">Apellidos:</span>
-					</div>
+    // Función para copiar el contenido al portapapeles
+    function copiarAlPortapapeles() {
+        // Obtener el contenido del elemento #resultadoNombre
+        let contenido = $('#resultadoNombre').text();
 
-					<input type="text" class="form-control" id="inApellidos" name="inApellidos" aria-describedby="basic-addon3">
+        // Crear un elemento textarea temporal para copiar el contenido
+        let textarea = document.createElement('textarea');
+        textarea.value = contenido;
+        document.body.appendChild(textarea);
 
-				</div>
+        // Seleccionar y copiar el texto
+        textarea.select();
+        document.execCommand('copy');
 
-				<div class="input-group input-group-lg mb-3">
+        // Eliminar el textarea temporal
+        document.body.removeChild(textarea);
 
-					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon3">¿Cuantos nombres?</span>
-					</div>
+        // Confirmar al usuario que se ha copiado el contenido
+        //alert('Contenido copiado al portapapeles.');
+    }
 
-					<select class="form-control custom-select" id="numeroNombres">
-						<option value="1" selected="selected">Uno</option>
-						<option value="2">Dos</option>
-						<option value="3">Telenovelesco</option>
-					</select>
+    // Cargar el archivo JSON con los nombres
+    $.getJSON("nombres.json", function(data) {
+        // Al hacer clic en el botón de generar nombre
+        $('#generarNombre').click(function() {
+            // Obtener los valores seleccionados por el usuario
+            let genero = $("input[name='genero']:checked").val();
+            let apellidos = $('#apellidos').val();
+            let cantidadNombres = parseInt($('#numeroNombres').val());
 
-				</div>
+            // Validaciones
+            if (!genero) {
+                alert("Por favor, selecciona un género.");
+                return;
+            }
+            if (!apellidos) {
+                alert("Por favor, ingresa los apellidos.");
+                return;
+            }
+            if (isNaN(cantidadNombres)) {
+                alert("Por favor, selecciona la cantidad de nombres.");
+                return;
+            }
 
-				<button class="btn btn-lg btn-primary" onclick="generaNombres();">¡GENERA UN NOMBRE!</button>
+            // Seleccionar el array de nombres según el género
+            let nombresArray = (genero === "Niña") ? data.nombresMujer : data.nombresHombre;
 
-			</div>
-		</div>
+            // Obtener nombres aleatorios del array sin repetir
+            let nombresSeleccionados = obtenerNombresAleatorios(nombresArray, cantidadNombres);
 
-		<div class="row">
-			<div class="col">
-				<h1 id="nombreGenerado" class="mb-5">
-					<span id="outNombres"></span>&nbsp;<span id="outApellidos"></span>
-				</h1>
-			</div>
-		</div>
+            // Concatenar nombres con los apellidos
+            let nombreCompleto = nombresSeleccionados.join(" ") + " " + apellidos;
 
-		<!-- Optional JavaScript -->
-		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-		<script>
-			function generaNombres () {
-				
-				var nombres = [];
-				
-				var nombresMujer = ['Sofía','Isabella','Valentina','Camila','Valeria','Luciana','Ximena/Jimena','Mariana','María-José','Victoria','Martina','Sara','Daniela','Samantha','Natalia','Emma','Renata','Lucía','Andrea','Regina','Mía','Catalina','Antonella','Emilia','Zoe','Julieta','Alejandra','Salomé','Paula','María-Fernanda','Nicole','María','Fernanda','Emily','Ana-Sofía','Amanda','Abril','Allison','Elena','Danna','Ariana','Violeta','Antonia','Ana','Agustina','Olivia','Jazmín','Romina','Rafaella','Julia','Abigail','Fabiana','Laura','Constanza','Alma','Guadalupe','Valery','Miranda','Juliana','Alexa','Elisa','Luna','Carla','Ivanna','Monserrat','Michelle','María-Paula','Ashley','Isabel','Micaela','Elizabeth','Rebeca','Melanie','Manuela','Noa','Bianca','Clara','Ana-Paula','Paulina','Carolina','Florencia','Josefina','Paola','Fiorella','María-Camila','Melissa','Maite','Juana','Vanessa','Alicia','Amy','Alessandra','Amelia','Kiara','Adriana','Isidora','Ana-Paula','Mariangel','Magdalena'];
-				
-				var nombresHombre = ['Santiago','Matías','Sebastián','Mateo','Nicolás','Alejandro','Samuel','Diego','Daniel','Benjamín','Leonardo','Tomás','Joaquín','Gabriel','Emiliano','Martín','Lucas','Agustín','David','Iker','Juan-José','Maximiliano','Adrián','Emmanuel','Felipe','Juan-Pablo','Andrés','Jerónimo/Gerónimo','Ángel','Rodrigo','Bruno','Alexander','Thiago','Pablo','Ian','Isaac','Miguel-Ángel','Fernando','Javier','Emilio','Juan-Sebastián','Alonso','Aarón','Rafael','Esteban','Juan-Diego','Axel','Francisco','Bautista','Carlos','Dylan','Juan','Julián','Manuel','Facundo','Gael','Valentino','Damián','Santino','Vicente','Máximo','Christopher','Jorge','Luciano','Dante','Alan','Cristóbal','Jesús','Lorenzo','Alex','Juan-Esteban','Patricio','Pedro','Juan-Manuel','Matthew','Antonio','Iván','José','Hugo','Josué','Lautaro','Diego-Alejandro','Miguel','Franco','Kevin','Luis','Simón','Elías','Caleb','Eduardo','Ricardo','Juan-David','Marcos','Salvador','Jacobo','Juan-Ignacio','Camilo','Mauricio','Juan-Felipe','Gonzalo'];
-				
-				var ran1 = 0;
-				var ran2 = 0;
-				var ran = [];
-				var nombresGenerados = "";
+            // Obtener iniciales
+            let iniciales = nombresSeleccionados.map(n => n.charAt(0)).join('') + apellidos.split(' ').map(a => a.charAt(0)).join('');
 
-				var checkMujer = document.getElementById('generoMujer').checked;
-				var checkHombre = document.getElementById('generoHombre').checked;
+            // Obtener el código personalizado
+            let apellidosArray = apellidos.split(' ');
+            let codigo = (apellidosArray[0].substring(0, 2) + apellidosArray[1].charAt(0) + 
+                          nombresSeleccionados[0].charAt(0)).toUpperCase();
 
-				var nNombres = document.getElementById('numeroNombres').value;
+            // Obtener fecha actual y sumarle 9 meses
+            let fecha = new Date();
+            fecha.setMonth(fecha.getMonth() + 9);
 
-				if ( (checkMujer == true) && ( checkHombre == true) ) { //aqui cambiar si se va a hacer selector
+            // Formato de fecha (yyMMdd)
+            let year = fecha.getFullYear().toString().slice(-2);
+            let month = ('0' + (fecha.getMonth() + 1)).slice(-2);
+            let day = ('0' + fecha.getDate()).slice(-2);
 
-					var volado = Math.round(Math.random());
+            let fechaCodigo = year + month + day;
 
-					switch (volado) {
-						case 1: generoSeleccionado = nombresMujer; break;
-						case 0: generoSeleccionado = nombresHombre; break;
-					}
+            // Mostrar el resultado
+            $('#resultadoNombre').append(
+                '<li><b>Nombre:</b> ' + nombreCompleto + '\n<br>' + 
+                '<b>Iniciales:</b> ' + iniciales + '\n<br>' + 
+                '<b>RFC:</b> ' + codigo + fechaCodigo + '\n\n</li>'
+                );
 
-					nombres = nombres.concat(generoSeleccionado);
+            // Asignar la función al botón
+            $('#copiarPortapapeles').click(copiarAlPortapapeles);
+        });
+    }).fail(function() {
+        console.error("Error al cargar la base de datos de nombres.");
+    });
+</script>
 
-				}
-
-				if ( (checkMujer == false) && ( checkHombre == true) ) {
-					nombres = nombres.concat(nombresHombre);
-				}
-
-				if ( (checkMujer == true) && ( checkHombre == false) ) {
-					nombres = nombres.concat(nombresMujer);
-				}
-
-				if ( (checkMujer == false) && ( checkHombre == false) ) {
-					alert('Selecciona al menos un genero para tu bebé');
-					return false;
-				}
-
-				n = nombres.length;
-
-
-				for (i=0;i<nNombres;i++) {
-
-					ran[i] = Math.floor(Math.random()*n);
-					nombresGenerados = nombresGenerados+" "+nombres[ran[i]];
-
-				}
-
-				document.getElementById('outNombres').innerHTML = nombresGenerados;
-				document.getElementById('outApellidos').innerHTML = document.getElementById('inApellidos').value;
-			} // generaNombres
-		</script>
-	</div>
 </body>
 </html>
