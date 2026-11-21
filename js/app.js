@@ -227,9 +227,10 @@ function crearTarjeta(resultado, enFavoritos) {
 
     const esFavorito = estado.favoritos.some(f => clave(f) === clave(resultado));
     const corazon = tarjeta.querySelector('.favorito');
-    corazon.textContent = esFavorito ? '♥' : '♡';
+    corazon.querySelector('.corazon').textContent = esFavorito ? '♥' : '♡';
+    corazon.querySelector('.texto-favorito').textContent = esFavorito ? 'Guardado' : 'Guardar';
     corazon.setAttribute('aria-pressed', String(esFavorito));
-    corazon.setAttribute('aria-label', esFavorito ? 'Quitar de favoritos' : 'Guardar en favoritos');
+    corazon.title = esFavorito ? 'Quitar de favoritos' : 'Guardar en favoritos';
     corazon.addEventListener('click', () => alternarFavorito(resultado));
 
     tarjeta.querySelector('.compartir-uno').addEventListener('click', () => compartirEnlace(resultado));
