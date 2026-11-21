@@ -1,15 +1,22 @@
 /* ---------- Tokens ---------- */
 :root {
-    --fondo: #fff7f2;
+    /* Paleta pastel: lavanda como acento, con rosa, celeste y menta de apoyo */
+    --fondo: #faf8ff;
+    --fondo-degradado: linear-gradient(170deg, #fdf2f6 0%, #f6f3ff 38%, #eef7fd 72%, #f0faf5 100%);
     --panel: #ffffff;
-    --texto: #2d2433;
-    --texto-suave: #6e6475;
-    --borde: #eadfe0;
-    --acento: #c2416b;
-    --acento-texto: #ffffff;
-    --acento-suave: #fde8ee;
+    --texto: #3a3550;
+    --texto-suave: #6b6683;
+    --borde: #e8e3f4;
+    --acento: #d4c8f7;          /* relleno: botón principal, chips activos */
+    --acento-texto: #2f2948;    /* texto sobre el relleno pastel */
+    --acento-fuerte: #6a55b5;   /* textos, contornos y foco (contraste AA) */
+    --acento-suave: #f1edfd;
+    --rosa: #f9d3df;
+    --rosa-fuerte: #d9668a;
+    --celeste: #cfe7fa;
+    --menta: #cdeee0;
     --error: #b42318;
-    --sombra: 0 1px 2px rgb(45 36 51 / 6%), 0 8px 24px rgb(45 36 51 / 6%);
+    --sombra: 0 1px 2px rgb(58 53 80 / 5%), 0 10px 30px rgb(106 85 181 / 8%);
     --radio: 16px;
     --fuente: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --fuente-nombre: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
@@ -18,14 +25,20 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --fondo: #1c1820;
-        --panel: #26212b;
-        --texto: #f3eef5;
-        --texto-suave: #b4aab9;
-        --borde: #3a333f;
-        --acento: #f07fa0;
-        --acento-texto: #1c1820;
-        --acento-suave: #3d2731;
+        --fondo: #1d1b26;
+        --fondo-degradado: linear-gradient(170deg, #241f2c 0%, #1d1b26 50%, #1b2128 100%);
+        --panel: #272433;
+        --texto: #f1eef8;
+        --texto-suave: #b5b0c8;
+        --borde: #3a3649;
+        --acento: #bfb0f0;
+        --acento-texto: #1f1b2e;
+        --acento-fuerte: #cdc2f6;
+        --acento-suave: #332d47;
+        --rosa: #e9b3c5;
+        --rosa-fuerte: #f2a0ba;
+        --celeste: #aed3ef;
+        --menta: #aadfc8;
         --error: #ff8a80;
         --sombra: none;
     }
@@ -36,7 +49,7 @@
 
 body {
     margin: 0;
-    background: var(--fondo);
+    background: var(--fondo) var(--fondo-degradado) fixed;
     color: var(--texto);
     font-family: var(--fuente);
     font-size: 16px;
@@ -48,7 +61,7 @@ button, input { font: inherit; color: inherit; }
 button { cursor: pointer; }
 button:disabled { cursor: not-allowed; opacity: .45; }
 
-:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--acento-fuerte); outline-offset: 2px; }
 
 [hidden] { display: none !important; }
 
@@ -75,6 +88,7 @@ button:disabled { cursor: not-allowed; opacity: .45; }
     border-radius: var(--radio);
     box-shadow: var(--sombra);
     padding: 18px;
+    background: color-mix(in srgb, var(--panel) 88%, transparent);
 }
 
 /* ---------- Formulario ---------- */
@@ -97,7 +111,7 @@ button:disabled { cursor: not-allowed; opacity: .45; }
     border-radius: 12px;
     background: var(--fondo);
 }
-.entrada:focus { border-color: var(--acento); outline: none; box-shadow: 0 0 0 3px var(--acento-suave); }
+.entrada:focus { border-color: var(--acento-fuerte); outline: none; box-shadow: 0 0 0 3px var(--acento-suave); }
 .entrada[aria-invalid] { border-color: var(--error); }
 
 .error { color: var(--error); font-size: .9rem; margin: 6px 0 0; }
@@ -121,7 +135,11 @@ button:disabled { cursor: not-allowed; opacity: .45; }
     border-color: var(--acento);
     color: var(--acento-texto);
 }
-.chip input:focus-visible + span { outline: 3px solid var(--acento); outline-offset: 2px; }
+.chip input[value="nina"]:checked + span { background: var(--rosa); border-color: var(--rosa); }
+.chip input[value="nino"]:checked + span { background: var(--celeste); border-color: var(--celeste); }
+.chip input[value="sorpresa"]:checked + span { background: var(--menta); border-color: var(--menta); }
+.chip input:checked + span { color: var(--acento-texto); }
+.chip input:focus-visible + span { outline: 3px solid var(--acento-fuerte); outline-offset: 2px; }
 
 /* ---------- Botones ---------- */
 .boton {
@@ -156,7 +174,7 @@ button:disabled { cursor: not-allowed; opacity: .45; }
     bottom: 0;
     z-index: 10;
     padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-    background: color-mix(in srgb, var(--fondo) 88%, transparent);
+    background: color-mix(in srgb, var(--panel) 80%, transparent);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-top: 1px solid var(--borde);
@@ -189,7 +207,7 @@ button:disabled { cursor: not-allowed; opacity: .45; }
     margin-left: 4px;
     border-radius: 999px;
     background: var(--acento-suave);
-    color: var(--acento);
+    color: var(--acento-fuerte);
     font-size: .8rem;
 }
 
@@ -207,7 +225,11 @@ button:disabled { cursor: not-allowed; opacity: .45; }
     background: var(--panel);
     scroll-margin: 16px 0 104px;
 }
-.tarjeta.nueva { animation: aparecer .35s ease-out; border-color: var(--acento); }
+.tarjeta { border-left: 5px solid var(--borde); }
+.tarjeta.genero-nina { border-left-color: var(--rosa); }
+.tarjeta.genero-nino { border-left-color: var(--celeste); }
+
+.tarjeta.nueva { animation: aparecer .35s ease-out; box-shadow: 0 0 0 2px var(--acento); }
 
 @keyframes aparecer {
     from { opacity: 0; transform: translateY(-6px); }
@@ -232,7 +254,7 @@ button:disabled { cursor: not-allowed; opacity: .45; }
     background: none;
     font-family: inherit;
     font-size: inherit;
-    text-decoration: underline dotted var(--acento) 2px;
+    text-decoration: underline dotted var(--acento-fuerte) 2px;
     text-underline-offset: 4px;
     border-radius: 4px;
 }
@@ -266,7 +288,7 @@ button:disabled { cursor: not-allowed; opacity: .45; }
     color: var(--texto-suave);
 }
 .icono:hover { background: var(--acento-suave); }
-.favorito[aria-pressed="true"] { color: var(--acento); }
+.favorito[aria-pressed="true"] { color: var(--rosa-fuerte); }
 
 .vacio { margin: 8px 0; color: var(--texto-suave); text-align: center; }
 
@@ -346,7 +368,7 @@ button:disabled { cursor: not-allowed; opacity: .45; }
     font-weight: 500;
     padding: 8px 0;
 }
-.volver:hover { color: var(--acento); }
+.volver:hover { color: var(--acento-fuerte); }
 
 .tarjeta-detalle {
     margin-block: auto 0;
@@ -355,7 +377,7 @@ button:disabled { cursor: not-allowed; opacity: .45; }
 }
 .antetitulo {
     margin: 0;
-    color: var(--acento);
+    color: var(--acento-fuerte);
     font-size: .8rem;
     font-weight: 700;
     letter-spacing: .08em;

@@ -199,6 +199,7 @@ function alternarFavorito(resultado) {
 
 function crearTarjeta(resultado, enFavoritos) {
     const tarjeta = elementos.plantilla.content.firstElementChild.cloneNode(true);
+    tarjeta.classList.add(`genero-${resultado.genero}`);
     const contenedorNombres = tarjeta.querySelector('.nombres');
 
     resultado.nombres.forEach((nombre, indice) => {
