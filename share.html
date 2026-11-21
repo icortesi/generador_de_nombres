@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Un nombre para ti · Generador de nombres</title>
+    <meta name="description" content="Alguien te compartió una idea de nombre para su bebé.">
+    <meta name="theme-color" content="#fff7f2" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1c1820" media="(prefers-color-scheme: dark)">
+    <meta property="og:title" content="Te comparto una idea de nombre 👶✨">
+    <meta property="og:description" content="Ábrelo para verlo, y genera los tuyos si te animas.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👶</text></svg>">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="pagina-detalle">
+<main class="detalle">
+    <a class="volver" href="./">← Generador de nombres</a>
+
+    <article class="panel tarjeta-detalle" id="detalle" hidden>
+        <p class="antetitulo">Te comparto esta idea de nombre</p>
+        <h1 class="nombre-detalle" id="nombre"></h1>
+        <p class="iniciales-detalle">Iniciales <strong id="iniciales"></strong></p>
+        <div class="acciones-detalle">
+            <button type="button" class="boton boton-principal" id="compartir">Compartir</button>
+            <button type="button" class="boton boton-suave" id="copiar">Copiar enlace</button>
+        </div>
+    </article>
+
+    <article class="panel tarjeta-detalle" id="invalido" hidden>
+        <p class="antetitulo">Ups</p>
+        <h1 class="nombre-detalle">Este enlace no trae un nombre</h1>
+        <p class="iniciales-detalle">Puede que se haya cortado al copiarlo. Pide que te lo manden de nuevo o genera los tuyos.</p>
+    </article>
+
+    <a class="boton boton-suave boton-generar-mas" href="./">Generar mis propios nombres ✨</a>
+</main>
+
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+<script type="module" src="js/compartir.js"></script>
+</body>
+</html>
