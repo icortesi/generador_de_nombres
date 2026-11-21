@@ -1,6 +1,6 @@
 import {
     separarApellidos, iniciales, rfc, sumarMeses, elegirAleatorios, nombresPorGenero, enlaceCompartir,
-} from './logica.js';
+} from './logica.js?v=5';
 
 const MAX_GENERADOS = 100;
 const INTENTOS_SIN_REPETIR = 25;
@@ -90,7 +90,7 @@ async function copiarTexto(texto, mensaje = '¡Copiado! 📋') {
     avisar(mensaje);
 }
 
-const enlaceDe = resultado => enlaceCompartir(location.href, [...resultado.nombres, ...resultado.apellidos]);
+const enlaceDe = resultado => enlaceCompartir(location.href, resultado.nombres, resultado.apellidos);
 
 async function compartirEnlace(resultado) {
     const url = enlaceDe(resultado);
