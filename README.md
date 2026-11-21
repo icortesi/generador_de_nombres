@@ -42,11 +42,11 @@ Empezó también como un pequeño ejercicio en el uso de Git. En 2026 la app se 
 Cada nombre tiene su propia página, con un enlace corto y legible:
 
 ```
-https://icortesi.github.io/generador_de_nombres/share?nombre=Sofía-Elena&apellidos=Cortés-López
+https://icortesi.github.io/generador_de_nombres/share?n=Sofía-Elena&a=Cortés-López
 ```
 
-- `nombre`: los nombres, separados por guion.
-- `apellidos` (opcional): los apellidos, también separados por guion.
+- `n`: los nombres, separados por guion.
+- `a` (opcional): los apellidos, también separados por guion.
 
 Las letras con tilde y la Ñ van tal cual; el navegador codifica lo necesario al abrir el enlace. La página valida los datos y los muestra solo como texto. Si el enlace llega cortado o inválido, muestra un aviso amable con un botón para volver al generador.
 
@@ -92,7 +92,7 @@ python3 -m http.server 8000
 # abre http://localhost:8000
 ```
 
-> En local, la página de detalle se abre como `http://localhost:8000/share.html?nombre=Sofía`. La ruta corta `/share` solo funciona en GitHub Pages.
+> En local, la página de detalle se abre como `http://localhost:8000/share.html?n=Sofía`. La ruta corta `/share` solo funciona en GitHub Pages.
 
 Para publicar, basta con fusionar a `master`: GitHub Pages actualiza el sitio solo.
 

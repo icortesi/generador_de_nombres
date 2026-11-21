@@ -10,7 +10,7 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 - Chips de género con su propio color (Niña rosa, Niño celeste, Sorpresa menta) y tarjetas con borde del color del género.
 - Modo oscuro ajustado con las mismas tonalidades. Todo el texto cumple el contraste WCAG AA.
 - Cada tarjeta tiene botones con texto, **♡ Guardar** y **Compartir**, en lugar de iconos sueltos. El de la barra pasa a llamarse **Compartir lista** ([#7](https://github.com/icortesi/generador_de_nombres/pull/7)).
-- Enlaces para compartir más cortos y legibles: `share?nombre=Sofía-Elena&apellidos=Cortés-López`. Los del formato anterior siguen funcionando ([#7](https://github.com/icortesi/generador_de_nombres/pull/7)).
+- Enlaces para compartir más cortos y legibles: `share?n=Sofía-Elena&a=Cortés-López`. Los del formato anterior siguen funcionando ([#7](https://github.com/icortesi/generador_de_nombres/pull/7)).
 - README renovado y este CHANGELOG ([#6](https://github.com/icortesi/generador_de_nombres/pull/6)).
 
 ## [2.1.0] - 2026-11-21
