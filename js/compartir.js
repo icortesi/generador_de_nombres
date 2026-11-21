@@ -1,8 +1,10 @@
-// Página de detalle: muestra el nombre que viene en ?name=[...] sin guardar nada.
-import { leerNombreCompartido } from './logica.js';
+// Página de detalle: muestra el nombre que viene en la URL sin guardar nada.
+import { leerNombreCompartido, enlaceCompartir, iniciales } from './logica.js?v=6';
 
 const $ = selector => document.querySelector(selector);
-const palabras = leerNombreCompartido(location.search);
+const datos = leerNombreCompartido(location.search);
+// Siempre compartimos el enlace en su forma legible (también si llegó con el formato viejo).
+const enlace = datos ? enlaceCompartir(location.href, datos.nombres, datos.apellidos) : location.href;
 
 let temporizador;
 function avisar(mensaje) {
@@ -15,26 +17,27 @@ function avisar(mensaje) {
 
 async function copiarEnlace() {
     try {
-        await navigator.clipboard.writeText(location.href);
+        await navigator.clipboard.writeText(enlace);
         avisar('¡Enlace copiado! 🔗');
     } catch {
         avisar('No pude copiar. Copia la dirección del navegador, porfa.');
     }
 }
 
-if (palabras) {
-    const nombreCompleto = palabras.join(' ');
+if (datos) {
+    const nombreCompleto = [...datos.nombres, ...datos.apellidos].join(' ');
     // textContent: nunca interpretamos como HTML lo que viene en el enlace.
     $('#nombre').textContent = nombreCompleto;
-    $('#iniciales').textContent = palabras.map(p => p.charAt(0).toUpperCase()).join('');
+    $('#iniciales').textContent = iniciales(datos.nombres, datos.apellidos);
     document.title = `${nombreCompleto} · Generador de nombres`;
+    if (location.search !== new URL(enlace).search) history.replaceState(null, '', enlace);
     $('#detalle').hidden = false;
 
     $('#copiar').addEventListener('click', copiarEnlace);
     $('#compartir').addEventListener('click', async () => {
         if (navigator.share) {
             try {
-                await navigator.share({ title: nombreCompleto, url: location.href });
+                await navigator.share({ title: nombreCompleto, url: enlace });
                 return;
             } catch (error) {
                 if (error.name === 'AbortError') return;

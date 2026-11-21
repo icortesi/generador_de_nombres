@@ -110,36 +110,58 @@ export function nombresPorGenero(datos, genero) {
 }
 
 // ---------- Enlaces para compartir (sin persistencia: todo va en la URL) ----------
+//
+// Formato: share?n=Sofía-Elena&a=Cortés-López  (n = nombres, a = apellidos)
+// Las palabras se separan con guion y las letras (con tildes y Ñ) van tal cual,
+// así el enlace se lee bien. Los navegadores codifican lo necesario al abrirlo.
+// Se sigue aceptando el formato anterior: share?name=["Sofía","Elena","Cortés","López"].
 
 const MAX_PALABRAS = 8;
 const MAX_LARGO_PALABRA = 40;
 
-/** URL de la página de detalle: share?name=["Sofía","Elena","Cortés","López"] */
-export function enlaceCompartir(base, palabras) {
+/** Codifica solo lo que no sea letra o número (el guion es el separador). */
+const codificarPalabra = palabra =>
+    palabra.replace(/[^\p{L}\p{N}]/gu, c => encodeURIComponent(c).replace(/-/g, '%2D'));
+
+/** URL legible de la página de detalle. */
+export function enlaceCompartir(base, nombres, apellidos = []) {
     const url = new URL('share', base);
-    url.searchParams.set('name', JSON.stringify(palabras));
-    return url.href;
+    let consulta = `?n=${nombres.map(codificarPalabra).join('-')}`;
+    if (apellidos.length) consulta += `&a=${apellidos.map(codificarPalabra).join('-')}`;
+    return url.origin + url.pathname + consulta;
 }
 
-/**
- * Lee y valida el parámetro `name` de la URL. Devuelve un array de palabras
- * o null si no es válido (no confiamos en lo que venga en un enlace).
- */
-export function leerNombreCompartido(search) {
-    const crudo = new URLSearchParams(search).get('name');
-    if (!crudo) return null;
-    let valor;
-    try {
-        valor = JSON.parse(crudo);
-    } catch {
-        return null;
-    }
-    if (!Array.isArray(valor)) return null;
-    const palabras = valor
+function limpiar(palabras) {
+    const limpias = palabras
         .filter(p => typeof p === 'string')
         .map(p => p.trim().replace(/\s+/g, ' '))
         .filter(p => p.length > 0 && p.length <= MAX_LARGO_PALABRA);
-    return palabras.length > 0 && palabras.length <= MAX_PALABRAS && palabras.length === valor.length
-        ? palabras
-        : null;
+    return limpias.length === palabras.length ? limpias : null;
+}
+
+/**
+ * Lee y valida el nombre de la URL. Devuelve { nombres, apellidos } o null si no
+ * es válido (no confiamos en lo que venga en un enlace).
+ */
+export function leerNombreCompartido(search) {
+    const params = new URLSearchParams(search);
+    let nombres;
+    let apellidos = [];
+
+    if (params.has('n')) {
+        nombres = limpiar(params.get('n').split('-'));
+        if (params.get('a')) apellidos = limpiar(params.get('a').split('-'));
+    } else if (params.has('name')) {
+        // Formato anterior: un array JSON con nombres y apellidos juntos.
+        try {
+            const valor = JSON.parse(params.get('name'));
+            nombres = Array.isArray(valor) ? limpiar(valor) : null;
+        } catch {
+            nombres = null;
+        }
+    }
+
+    if (!nombres || !apellidos || nombres.length === 0) return null;
+    if (nombres.length + apellidos.length > MAX_PALABRAS) return null;
+    return { nombres, apellidos };
 }

@@ -1,6 +1,6 @@
 import {
     separarApellidos, iniciales, rfc, sumarMeses, elegirAleatorios, nombresPorGenero, enlaceCompartir,
-} from './logica.js';
+} from './logica.js?v=6';
 
 const MAX_GENERADOS = 100;
 const INTENTOS_SIN_REPETIR = 25;
@@ -90,7 +90,7 @@ async function copiarTexto(texto, mensaje = '¡Copiado! 📋') {
     avisar(mensaje);
 }
 
-const enlaceDe = resultado => enlaceCompartir(location.href, [...resultado.nombres, ...resultado.apellidos]);
+const enlaceDe = resultado => enlaceCompartir(location.href, resultado.nombres, resultado.apellidos);
 
 async function compartirEnlace(resultado) {
     const url = enlaceDe(resultado);
@@ -227,9 +227,10 @@ function crearTarjeta(resultado, enFavoritos) {
 
     const esFavorito = estado.favoritos.some(f => clave(f) === clave(resultado));
     const corazon = tarjeta.querySelector('.favorito');
-    corazon.textContent = esFavorito ? '♥' : '♡';
+    corazon.querySelector('.corazon').textContent = esFavorito ? '♥' : '♡';
+    corazon.querySelector('.texto-favorito').textContent = esFavorito ? 'Guardado' : 'Guardar';
     corazon.setAttribute('aria-pressed', String(esFavorito));
-    corazon.setAttribute('aria-label', esFavorito ? 'Quitar de favoritos' : 'Guardar en favoritos');
+    corazon.title = esFavorito ? 'Quitar de favoritos' : 'Guardar en favoritos';
     corazon.addEventListener('click', () => alternarFavorito(resultado));
 
     tarjeta.querySelector('.compartir-uno').addEventListener('click', () => compartirEnlace(resultado));
