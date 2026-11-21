@@ -1,7 +1,7 @@
 # 👶✨ Generador de nombres
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![jQuery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JSON](https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=json&logoColor=white)
 
 
@@ -17,11 +17,25 @@ Esta aplicación genera combinaciones de nombres y los muestra junto con los pos
 
 ## 🚀 Cómo usarla
 1. Entra a https://icortesi.github.io/generador_de_nombres/
-1. Selecciona el género del bebé (si lo sabes) o selecciona ambos para generar nombres de cualquier género.
-2. Escribe los apellidos que tendrá el bebé.
-3. Selecciona el número de nombres que quieres que tenga (1-3).
-4. Presiona el botón para generar un nombre. Puedes presionarlo cuantas veces quieras.
-5. Presiona el botón de **Copiar al Portapapeles** para compartir los nombres generados.
+2. Elige **Niña**, **Niño** o **Sorpresa** (cada combinación sale de una sola lista, para no mezclar).
+3. Escribe los apellidos que tendrá el bebé (uno o dos; partículas como "de la" funcionan).
+4. Elige cuántos nombres combinar: uno, dos o *telenovelesco* (tres) 🎭.
+5. Ajusta la fecha estimada de nacimiento si quieres (por defecto, hoy + 9 meses). Se usa para el RFC.
+6. Presiona **Generar nombre** (o Enter) cuantas veces quieras. Los nuevos aparecen arriba y no se repiten.
+7. Toca cualquier nombre de una combinación para cambiar **solo ese** 🔄.
+8. Guarda los que te gusten con ♡: quedan en la pestaña **Favoritos**, guardados en tu navegador.
+9. **Compartir** abre el menú del teléfono (WhatsApp, etc.); **Copiar** los manda al portapapeles.
+
+## 🗂️ Estructura
+- `index.html`: la página.
+- `css/estilos.css`: estilos, móvil primero, con modo oscuro y dos columnas en escritorio.
+- `js/logica.js`: lógica pura (RFC, iniciales, selección aleatoria), sin DOM.
+- `js/app.js`: interfaz y eventos.
+- `nombres.json`: listas de nombres (solo nombres simples, sin duplicados).
+
+El RFC que se muestra es el de 10 caracteres **sin homoclave**, con las reglas simplificadas del SAT (primera vocal interna, partículas, María/José, palabras inconvenientes y un solo apellido).
+
+Para probarla localmente sirve la carpeta con cualquier servidor estático, por ejemplo `python3 -m http.server`.
 
 ## 🤝 Contribuciones
 
@@ -29,8 +43,6 @@ Se aceptan todo tipo de contribuciones que mejoren el algoritmo y la presentaci�
 
 ### 📝 TODO
 - Actualizar la lista de nombres
-- Separar responsabilidades (vista y lógica)
-- Actualizar a un framework más reciente
 
 ## 📜 License 
 
