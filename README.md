@@ -23,7 +23,7 @@ Empezó también como un pequeño ejercicio en el uso de Git. En 2026 la app se 
 - ♡ **Guardar favoritos** para armar tu lista corta.
 - 📤 **Compartir** un nombre con un enlace a su propia página, o la lista completa por WhatsApp, correo, etc.
 - 🔤 Ver las **iniciales** y el **RFC** que tendría, por si alguna combinación forma algo incómodo.
-- 🌙 Usarla cómodamente en el teléfono o en la compu, en modo claro u oscuro.
+- 📱 Usarla cómodamente en el teléfono o en la compu, siempre en tonos claros y pastel.
 
 ## 🚀 Cómo usarla
 
@@ -77,7 +77,7 @@ También contempla partículas ("de", "la", "del"…), la regla de un solo apell
 | --- | --- |
 | `index.html` | Página principal del generador. |
 | `share.html` | Página de detalle que se comparte (GitHub Pages la sirve en `/share`). |
-| `css/estilos.css` | Estilos mobile-first: paleta pastel, modo oscuro y dos columnas en escritorio. |
+| `css/estilos.css` | Estilos mobile-first: paleta pastel en tema claro y dos columnas en escritorio. |
 | `js/logica.js` | Lógica pura sin DOM: RFC, iniciales, selección aleatoria y enlaces para compartir. |
 | `js/app.js` | Interfaz del generador: eventos, favoritos y pintado. |
 | `js/compartir.js` | Lógica de la página de detalle. |

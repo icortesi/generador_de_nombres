@@ -1,8 +1,12 @@
 /* ---------- Tokens ---------- */
 :root {
     /* Paleta pastel: lavanda como acento, con rosa, celeste y menta de apoyo */
-    --fondo: #faf8ff;
-    --fondo-degradado: linear-gradient(170deg, #fdf2f6 0%, #f6f3ff 38%, #eef7fd 72%, #f0faf5 100%);
+    --fondo: #fdfbff;
+    /* Fondo claro: base casi blanca con manchas pastel muy suaves en las esquinas */
+    --fondo-degradado:
+        radial-gradient(60rem 40rem at -10% -10%, #fde9f0 0%, transparent 60%),
+        radial-gradient(50rem 36rem at 110% 0%, #e6f2fc 0%, transparent 60%),
+        radial-gradient(60rem 40rem at 50% 115%, #e9f7f0 0%, transparent 60%);
     --panel: #ffffff;
     --texto: #3a3550;
     --texto-suave: #6b6683;
@@ -20,28 +24,7 @@
     --radio: 16px;
     --fuente: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --fuente-nombre: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-    color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --fondo: #1d1b26;
-        --fondo-degradado: linear-gradient(170deg, #241f2c 0%, #1d1b26 50%, #1b2128 100%);
-        --panel: #272433;
-        --texto: #f1eef8;
-        --texto-suave: #b5b0c8;
-        --borde: #3a3649;
-        --acento: #bfb0f0;
-        --acento-texto: #1f1b2e;
-        --acento-fuerte: #cdc2f6;
-        --acento-suave: #332d47;
-        --rosa: #e9b3c5;
-        --rosa-fuerte: #f2a0ba;
-        --celeste: #aed3ef;
-        --menta: #aadfc8;
-        --error: #ff8a80;
-        --sombra: none;
-    }
+    color-scheme: light; /* siempre claro, aunque el sistema esté en modo oscuro */
 }
 
 /* ---------- Base ---------- */
@@ -49,7 +32,8 @@
 
 body {
     margin: 0;
-    background: var(--fondo) var(--fondo-degradado) fixed;
+    background: var(--fondo-degradado), var(--fondo);
+    background-attachment: fixed;
     color: var(--texto);
     font-family: var(--fuente);
     font-size: 16px;
@@ -211,7 +195,8 @@ button:disabled { cursor: not-allowed; opacity: .45; }
     font-size: .8rem;
 }
 
-.herramientas { display: flex; flex-wrap: wrap; gap: 8px; }
+.herramientas { display: flex; flex-wrap: wrap; gap: 6px; }
+.herramientas .boton { padding: 6px 12px; font-size: .92rem; }
 
 .lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 

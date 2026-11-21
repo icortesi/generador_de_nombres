@@ -3,6 +3,13 @@
 Todos los cambios importantes de este proyecto se documentan aquí.
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y las versiones siguen [Versionado Semántico](https://semver.org/lang/es/).
 
+## [2.3.0] - 2026-11-21
+
+### Cambiado
+- Fondo claro: base casi blanca con manchas pastel muy suaves (rosa, celeste y menta) en las esquinas.
+- La app usa **siempre el tema claro**, aunque el teléfono o la compu estén en modo oscuro. Se quitó el modo oscuro.
+- Botones de la barra de resultados más compactos, para que quepan en una línea en móvil.
+
 ## [2.2.0] - 2026-11-21
 
 ### Cambiado
@@ -67,6 +74,7 @@ Rediseño completo, mobile-first ([#3](https://github.com/icortesi/generador_de_
 ### Agregado
 - Primera versión del generador.
 
+[2.3.0]: https://github.com/icortesi/generador_de_nombres/pull/8
 [2.2.0]: https://github.com/icortesi/generador_de_nombres/pull/5
 [2.1.0]: https://github.com/icortesi/generador_de_nombres/pull/4
 [2.0.0]: https://github.com/icortesi/generador_de_nombres/pull/3
