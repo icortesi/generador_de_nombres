@@ -1,6 +1,6 @@
 import {
     separarApellidos, iniciales, rfc, sumarMeses, elegirAleatorios, nombresPorGenero, enlaceCompartir,
-} from './logica.js?v=5';
+} from './logica.js?v=6';
 
 const MAX_GENERADOS = 100;
 const INTENTOS_SIN_REPETIR = 25;

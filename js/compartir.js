@@ -1,5 +1,5 @@
 // Página de detalle: muestra el nombre que viene en la URL sin guardar nada.
-import { leerNombreCompartido, enlaceCompartir, iniciales } from './logica.js?v=5';
+import { leerNombreCompartido, enlaceCompartir, iniciales } from './logica.js?v=6';
 
 const $ = selector => document.querySelector(selector);
 const datos = leerNombreCompartido(location.search);

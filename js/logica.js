@@ -111,7 +111,7 @@ export function nombresPorGenero(datos, genero) {
 
 // ---------- Enlaces para compartir (sin persistencia: todo va en la URL) ----------
 //
-// Formato: share?nombre=Sofía-Elena&apellidos=Cortés-López
+// Formato: share?n=Sofía-Elena&a=Cortés-López  (n = nombres, a = apellidos)
 // Las palabras se separan con guion y las letras (con tildes y Ñ) van tal cual,
 // así el enlace se lee bien. Los navegadores codifican lo necesario al abrirlo.
 // Se sigue aceptando el formato anterior: share?name=["Sofía","Elena","Cortés","López"].
@@ -126,8 +126,8 @@ const codificarPalabra = palabra =>
 /** URL legible de la página de detalle. */
 export function enlaceCompartir(base, nombres, apellidos = []) {
     const url = new URL('share', base);
-    let consulta = `?nombre=${nombres.map(codificarPalabra).join('-')}`;
-    if (apellidos.length) consulta += `&apellidos=${apellidos.map(codificarPalabra).join('-')}`;
+    let consulta = `?n=${nombres.map(codificarPalabra).join('-')}`;
+    if (apellidos.length) consulta += `&a=${apellidos.map(codificarPalabra).join('-')}`;
     return url.origin + url.pathname + consulta;
 }
 
@@ -148,9 +148,9 @@ export function leerNombreCompartido(search) {
     let nombres;
     let apellidos = [];
 
-    if (params.has('nombre')) {
-        nombres = limpiar(params.get('nombre').split('-'));
-        if (params.get('apellidos')) apellidos = limpiar(params.get('apellidos').split('-'));
+    if (params.has('n')) {
+        nombres = limpiar(params.get('n').split('-'));
+        if (params.get('a')) apellidos = limpiar(params.get('a').split('-'));
     } else if (params.has('name')) {
         // Formato anterior: un array JSON con nombres y apellidos juntos.
         try {
