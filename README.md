@@ -92,7 +92,7 @@ python3 -m http.server 8000
 # abre http://localhost:8000
 ```
 
-> En local, la página de detalle se abre como `http://localhost:8000/share.html?name=[...]`. La ruta corta `/share` solo funciona en GitHub Pages.
+> En local, la página de detalle se abre como `http://localhost:8000/share.html?nombre=Sofía`. La ruta corta `/share` solo funciona en GitHub Pages.
 
 Para publicar, basta con fusionar a `master`: GitHub Pages actualiza el sitio solo.
 
