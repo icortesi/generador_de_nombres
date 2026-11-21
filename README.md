@@ -24,13 +24,15 @@ Esta aplicación genera combinaciones de nombres y los muestra junto con los pos
 6. Presiona **Generar nombre** (o Enter) cuantas veces quieras. Los nuevos aparecen arriba y no se repiten.
 7. Toca cualquier nombre de una combinación para cambiar **solo ese** 🔄.
 8. Guarda los que te gusten con ♡: quedan en la pestaña **Favoritos**, guardados en tu navegador.
-9. **Compartir** abre el menú del teléfono (WhatsApp, etc.); **Copiar** los manda al portapapeles.
+9. El botón ↗ de cada nombre comparte un enlace a su página de detalle, `share?name=["Sofía","Elena","Cortés","López"]`. No se guarda nada en ningún servidor: el nombre viaja en la URL.
+10. **Compartir** (arriba de la lista) abre el menú del teléfono con todos los nombres; **Copiar** los manda al portapapeles.
 
 ## 🗂️ Estructura
 - `index.html`: la página.
 - `css/estilos.css`: estilos, móvil primero, con modo oscuro y dos columnas en escritorio.
 - `js/logica.js`: lógica pura (RFC, iniciales, selección aleatoria), sin DOM.
 - `js/app.js`: interfaz y eventos.
+- `share.html` + `js/compartir.js`: página de detalle que se comparte (GitHub Pages la sirve en `/share`).
 - `nombres.json`: listas de nombres (solo nombres simples, sin duplicados).
 
 El RFC que se muestra es el de 10 caracteres **sin homoclave**, con las reglas simplificadas del SAT (primera vocal interna, partículas, María/José, palabras inconvenientes y un solo apellido).

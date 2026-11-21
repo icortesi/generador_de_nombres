@@ -108,3 +108,38 @@ export function nombresPorGenero(datos, genero) {
     if (genero === 'nino') return datos.nombresHombre;
     return [...datos.nombresMujer, ...datos.nombresHombre];
 }
+
+// ---------- Enlaces para compartir (sin persistencia: todo va en la URL) ----------
+
+const MAX_PALABRAS = 8;
+const MAX_LARGO_PALABRA = 40;
+
+/** URL de la página de detalle: share?name=["Sofía","Elena","Cortés","López"] */
+export function enlaceCompartir(base, palabras) {
+    const url = new URL('share', base);
+    url.searchParams.set('name', JSON.stringify(palabras));
+    return url.href;
+}
+
+/**
+ * Lee y valida el parámetro `name` de la URL. Devuelve un array de palabras
+ * o null si no es válido (no confiamos en lo que venga en un enlace).
+ */
+export function leerNombreCompartido(search) {
+    const crudo = new URLSearchParams(search).get('name');
+    if (!crudo) return null;
+    let valor;
+    try {
+        valor = JSON.parse(crudo);
+    } catch {
+        return null;
+    }
+    if (!Array.isArray(valor)) return null;
+    const palabras = valor
+        .filter(p => typeof p === 'string')
+        .map(p => p.trim().replace(/\s+/g, ' '))
+        .filter(p => p.length > 0 && p.length <= MAX_LARGO_PALABRA);
+    return palabras.length > 0 && palabras.length <= MAX_PALABRAS && palabras.length === valor.length
+        ? palabras
+        : null;
+}

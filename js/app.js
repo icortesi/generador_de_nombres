@@ -1,5 +1,5 @@
 import {
-    separarApellidos, iniciales, rfc, sumarMeses, elegirAleatorios, nombresPorGenero,
+    separarApellidos, iniciales, rfc, sumarMeses, elegirAleatorios, nombresPorGenero, enlaceCompartir,
 } from './logica.js';
 
 const MAX_GENERADOS = 100;
@@ -72,7 +72,7 @@ function avisar(mensaje) {
     temporizadorAviso = setTimeout(() => elementos.aviso.classList.remove('visible'), 2200);
 }
 
-async function copiarTexto(texto) {
+async function copiarTexto(texto, mensaje = '¡Copiado! 📋') {
     try {
         await navigator.clipboard.writeText(texto);
     } catch {
@@ -87,7 +87,22 @@ async function copiarTexto(texto) {
         document.execCommand('copy');
         area.remove();
     }
-    avisar('¡Copiado! 📋');
+    avisar(mensaje);
+}
+
+const enlaceDe = resultado => enlaceCompartir(location.href, [...resultado.nombres, ...resultado.apellidos]);
+
+async function compartirEnlace(resultado) {
+    const url = enlaceDe(resultado);
+    if (navigator.share) {
+        try {
+            await navigator.share({ title: [...resultado.nombres, ...resultado.apellidos].join(' '), url });
+            return;
+        } catch (error) {
+            if (error.name === 'AbortError') return;
+        }
+    }
+    await copiarTexto(url, '¡Enlace copiado! 🔗');
 }
 
 async function compartirTexto(texto) {
@@ -216,7 +231,7 @@ function crearTarjeta(resultado, enFavoritos) {
     corazon.setAttribute('aria-label', esFavorito ? 'Quitar de favoritos' : 'Guardar en favoritos');
     corazon.addEventListener('click', () => alternarFavorito(resultado));
 
-    tarjeta.querySelector('.compartir-uno').addEventListener('click', () => compartirTexto(textoDe(resultado)));
+    tarjeta.querySelector('.compartir-uno').addEventListener('click', () => compartirEnlace(resultado));
     return tarjeta;
 }
 
