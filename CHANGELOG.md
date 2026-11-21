@@ -9,13 +9,15 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 - Nueva **paleta pastel**: lavanda como color principal, con rosa, celeste y menta de apoyo, y un fondo en degradado suave ([#5](https://github.com/icortesi/generador_de_nombres/pull/5)).
 - Chips de género con su propio color (Niña rosa, Niño celeste, Sorpresa menta) y tarjetas con borde del color del género.
 - Modo oscuro ajustado con las mismas tonalidades. Todo el texto cumple el contraste WCAG AA.
-- README renovado y este CHANGELOG.
+- Cada tarjeta tiene botones con texto, **♡ Guardar** y **Compartir**, en lugar de iconos sueltos. El de la barra pasa a llamarse **Compartir lista** ([#7](https://github.com/icortesi/generador_de_nombres/pull/7)).
+- Enlaces para compartir más cortos y legibles: `share?nombre=Sofía-Elena&apellidos=Cortés-López`. Los del formato anterior siguen funcionando ([#7](https://github.com/icortesi/generador_de_nombres/pull/7)).
+- README renovado y este CHANGELOG ([#6](https://github.com/icortesi/generador_de_nombres/pull/6)).
 
 ## [2.1.0] - 2026-11-21
 
 ### Agregado
-- **Página de detalle para compartir** en `/share?name=[...]`: muestra un nombre en grande con sus iniciales, sin guardar nada en ningún servidor ([#4](https://github.com/icortesi/generador_de_nombres/pull/4)).
-- El botón ↗ de cada tarjeta comparte ese enlace con el menú nativo del teléfono, o lo copia si el navegador no lo soporta.
+- **Página de detalle para compartir** en `/share`: muestra un nombre en grande con sus iniciales, sin guardar nada en ningún servidor ([#4](https://github.com/icortesi/generador_de_nombres/pull/4)).
+- El botón de compartir de cada tarjeta manda ese enlace con el menú nativo del teléfono, o lo copia si el navegador no lo soporta.
 
 ### Seguridad
 - El parámetro `name` se valida (array de 1 a 8 textos, de 40 caracteres como máximo) y se pinta solo como texto.

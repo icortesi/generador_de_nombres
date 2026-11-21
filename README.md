@@ -21,7 +21,7 @@ Empezó también como un pequeño ejercicio en el uso de Git. En 2026 la app se 
 - 👧👦 Elegir **Niña**, **Niño** o **Sorpresa**.
 - 🔄 **Cambiar un solo nombre** de la combinación y quedarte con el que sí te gustó.
 - ♡ **Guardar favoritos** para armar tu lista corta.
-- ↗ **Compartir** un nombre con un enlace a su propia página, o la lista completa por WhatsApp, correo, etc.
+- 📤 **Compartir** un nombre con un enlace a su propia página, o la lista completa por WhatsApp, correo, etc.
 - 🔤 Ver las **iniciales** y el **RFC** que tendría, por si alguna combinación forma algo incómodo.
 - 🌙 Usarla cómodamente en el teléfono o en la compu, en modo claro u oscuro.
 
@@ -34,18 +34,23 @@ Empezó también como un pequeño ejercicio en el uso de Git. En 2026 la app se 
 5. Si quieres, ajusta la **fecha estimada de nacimiento**. Por defecto es hoy + 9 meses y solo se usa para el RFC.
 6. Presiona **Generar nombre** (o Enter) cuantas veces quieras. Los nuevos aparecen arriba y no se repiten.
 7. Toca cualquier nombre subrayado para cambiar **solo ese**.
-8. Toca ♡ para guardar en **Favoritos**.
-9. Toca ↗ para compartir el enlace de ese nombre, o usa **Compartir** y **Copiar** arriba de la lista para mandar todos.
+8. Toca **♡ Guardar** para mandarlo a **Favoritos**.
+9. Toca **Compartir** en una tarjeta para mandar el enlace de ese nombre, o usa **Compartir lista** y **Copiar** arriba de la lista para mandar todos.
 
 ## 🔗 Compartir un nombre
 
-Cada nombre tiene su propia página, con un enlace como este:
+Cada nombre tiene su propia página, con un enlace corto y legible:
 
 ```
-https://icortesi.github.io/generador_de_nombres/share?name=["Sofía","Elena","Cortés","López"]
+https://icortesi.github.io/generador_de_nombres/share?nombre=Sofía-Elena&apellidos=Cortés-López
 ```
 
-El parámetro `name` es un array JSON con los nombres y apellidos (dentro de la URL va codificado). La página valida el parámetro y lo muestra solo como texto. Si el enlace llega cortado o inválido, muestra un aviso amable con un botón para volver al generador.
+- `nombre`: los nombres, separados por guion.
+- `apellidos` (opcional): los apellidos, también separados por guion.
+
+Las letras con tilde y la Ñ van tal cual; el navegador codifica lo necesario al abrir el enlace. La página valida los datos y los muestra solo como texto. Si el enlace llega cortado o inválido, muestra un aviso amable con un botón para volver al generador.
+
+> Los enlaces del formato anterior (`share?name=["Sofía","Elena","Cortés","López"]`) siguen funcionando: la página los convierte sola al formato nuevo.
 
 ## 🔒 Privacidad
 
